@@ -1,0 +1,112 @@
+<html>
+
+<head>
+    <script src="js/jquery-2.2.1.js"></script>
+    <script src="js/materialize.js"></script>
+    <link href="css/materialize.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="fonts/Source.ttf" rel="stylesheet">
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">
+                <img id="imgLogo" src="img/menu.png">
+            </a>
+        </div>
+    </nav>
+
+    <div class="container" style="padding: 20px;">
+
+        <%if(sucess == 'T') {%>
+            <div class="card-panel center">
+                <b class="blue-text">Dados gravados com sucesso!</b>
+            </div>
+            <% } %>
+                <%if(sucess == 'F') {%>
+                    <div class="card-panel center">
+                        <b class="red-text">Ocorreu um erro ao cadastrar, tente novamente!</b>
+                    </div>
+                    <% } %>
+
+                    <ul class="collection">
+      <li style="font-size: 35px;text-align: center;" class="collection-item">Cadastro de Imovel</li>
+                        
+                          </ul>
+                        <div class="row">
+                            <form class="col s12" action="/imovel/cadastrar" method="post">
+                                <div class="row">
+                                    <input type="hidden" name="id_imovel" value="<%=imovel.id_imovel%>">
+                                    <div class="input-field col s5">
+                                        <input id="first_name" value="<%=imovel.registro%>" name="registro" type="text" class="validate">
+                                        <label for="first_name">Registro</label>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <input id="last_name" value="<%=imovel.lote%>" name="lote" type="text" class="validate">
+                                        <label for="last_name">Lote</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s5">
+                                        <input id="first_name" value="<%=imovel.endereco%>" name="endereco" type="text" class="validate">
+                                        <label for="first_name">Endereco</label>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <input id="last_name" value="<%=imovel.numero%>" name="numero" type="text" class="validate">
+                                        <label for="last_name">Numero</label>
+                                    </div>
+                                    <div class="input-field col s5">
+                                        <input id="first_name" value="<%=imovel.bairro%>" name="bairro" type="text" class="validate">
+                                        <label for="first_name">Bairro</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s5">
+                                        <input id="first_name" value="<%=imovel.cidade%>" name="cidade" type="text" class="validate">
+                                        <label for="first_name">Cidade</label>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <input id="last_name" value="<%=imovel.estado%>" name="estado" type="text" class="validate">
+                                        <label for="last_name">Estado</label>
+                                    </div>
+                                    <div class="input-field col s5">
+                                        <input id="first_name" value="<%=imovel.valor%>" name="valor" type="text" class="validate">
+                                        <label for="first_name">valor</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s4">
+                                        <select name="corretor">
+                                            <option value="">Selecione</option>
+                                            <% 
+                                                for(var i = 0; i < selectCorretor.length; i++) { 
+                                                    let selected = ( imovel.corretor == selectCorretor[i].id_corretor ) ? "selected" : "";
+                                            %>
+                                                <option value="<%=selectCorretor[i].id_corretor%>"<%=selected %> ><%=selectCorretor[i].nome%></option>
+                                            <% } %>
+                                        </select>
+                                        <label>Corretores</label>
+                                    </div>
+                                  
+                                </div>
+                                <div style="text-align: center;">
+                                        <button type="submit" class="waves-effect waves-light btn">Salvar</button>
+                                        <a href="/listaImovel" class="waves-effect waves-light btn">Listar</a>
+                                </div>
+                                
+                            </form>
+
+                        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('select').material_select();
+        });
+    </script>
+
+</body>
+
+</html>

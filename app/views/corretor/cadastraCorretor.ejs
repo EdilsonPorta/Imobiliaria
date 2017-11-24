@@ -1,0 +1,116 @@
+<html>
+
+<head>
+    <script src="js/jquery-2.2.1.js"></script>
+    <script src="js/materialize.js"></script>
+    <link href="css/materialize.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="fonts/Source.ttf" rel="stylesheet">  
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">
+                <img id="imgLogo" src="img/menu.png">
+            </a>    
+                    
+        </div>
+    </nav>
+
+    <div class="container" style="padding: 20px;">
+
+        <%if(sucess == 'T') {%>
+            <div class="card-panel center">
+                <b class="blue-text">Dados gravados com sucesso!</b>
+            </div>
+            <% } %>
+                <%if(sucess == 'F') {%>
+                    <div class="card-panel center">
+                        <b class="red-text">Ocorreu um erro ao cadastrar, tente novamente!</b>
+                    </div>
+                    <% } %>
+
+                    <ul class="collection">
+                            <li style="font-size: 35px;text-align: center;" class="collection-item">Cadastro de Corretor</li>
+                                              
+                                                </ul>
+                        <div class="row">
+                            <form class="col s12" action="/corretor/cadastrar" method="post">
+                                <div class="row">
+                                    <input type="hidden" name="id_corretor" value="<%=corretor.id_corretor%>">
+                                    <div class="input-field col s5">
+                                        <input id="first_name" value="<%=corretor.nome%>" name="nome" type="text" class="validate">
+                                        <label for="first_name">Nome do Corretor</label>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <input id="last_name" value="<%=corretor.cpf%>" name="cpf" type="text" class="validate">
+                                        <label for="last_name">CPF</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s1">
+                                        <input id="first_name" value="<%=corretor.ddd%>" name="ddd" type="text" class="validate">
+                                        <label for="first_name">DDD</label>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <input id="last_name" value="<%=corretor.celular%>" name="celular" type="text" class="validate">
+                                        <label for="last_name">Celular</label>
+                                    </div>
+
+                                    <div class="input-field col s5">
+                                        <input id="first_name" value="<%=corretor.email%>" name="email" type="text" class="validate">
+                                        <label for="first_name">Email</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                        <div class="input-field col s5">
+                                            <input id="first_name" value="<%=corretor.endereco%>" name="endereco" type="text" class="validate">
+                                            <label for="first_name">Endereco</label>
+                                        </div>
+                                        <div class="input-field col s5">
+                                            <input id="last_name" value="<%=corretor.bairro%>" name="bairro" type="text" class="validate">
+                                            <label for="last_name">Bairro</label>
+                                        </div>
+    
+                                        <div class="input-field col s5">
+                                            <input id="first_name" value="<%=corretor.cidade%>" name="cidade" type="text" class="validate">
+                                            <label for="first_name">Cidade</label>
+                                        </div>
+                                     
+                                            <div class="input-field col s2">
+                                                    <select name="estado">
+                                                        <option value="">Selecione</option>                      
+                                                        <% 
+                                                            let ufs = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
+                                                            for(var i = 0; i < ufs.length; i++) {
+                                                                let selected = ( corretor.estado == ufs[i] ) ? "selected" : "";
+                                                        %>
+                                                            <option value="<%=ufs[i]%>" <%=selected %> ><%=ufs[i]%></option>
+                                                        <% } %>
+                                                    </select>
+                                                    <label>Estado</label>
+                                                </div>
+                                          
+                                    </div>
+
+                                            <div style="text-align: center;">
+                                                    <button type="submit" class="waves-effect waves-light btn">Salvar</button>
+                                                    <a href="/listaCorretor" class="waves-effect waves-light btn">Listar</a>
+                                            </div>
+                              
+                            </form>
+
+                        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('select').material_select();
+        });
+    </script>
+
+</body>
+
+</html>

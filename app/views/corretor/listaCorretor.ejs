@@ -1,0 +1,136 @@
+<html>
+
+<head>
+    <link href="css/materialize.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="fonts/Source.ttf" rel="stylesheet">
+    <script src="js/jquery-2.2.1.js"></script>
+    <script src="js/jquery.mask.js"/></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {	
+            $(".cpf").mask("999.999.999-99");
+            $(".celular").mask("99999-9999");
+        });
+    </script>
+
+</head>
+
+<body>
+
+  
+
+    <nav background-color: "#fdfdfd">
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo left">
+                    <img id="imgLogo" src="img/menu.png">
+        
+                </a>
+                <div style="padding: 15px; margin-left: 70px;text-align: center;font-size: 100px;">
+                    <a  class="btn-flat" href="cadastraCorretor">Novo Cadastro</a>
+                </div>
+             <div style="text-align: center;">
+                    <a class="options" href="listaImovel"><img class="logo" src="img/imovel.png">Imovel</a>
+                    <a class="options" href="listaCorretor"><img class="logo" src="img/corretor.png">Corretor</a>
+            
+        </nav>
+
+    <div class="container" style="margin-top: 100px;">
+
+        <%if(sucess == 'T') {%>
+            <div class="card-panel center">
+                <b class="blue-text">Registro excluído com sucesso!</b>
+            </div>
+        <% } %>
+        <%if(sucess == 'F') {%>
+            <div class="card-panel center">
+                <b class="red-text">Ocorreu um erro ao excluir, tente novamente!</b>
+            </div>
+        <% } %>
+        <%if(sucess == 'B') {%>
+            <div class="card-panel center">
+                <b class="red-text">Não é possível excluir um corretor que possui imovel cadastrado!</b>
+            </div>
+        <% } %>
+
+        <ul class="collection">
+                <li style="font-size: 35px;text-align: center;" class="collection-item">Lista de Corretores</li>
+            
+              </ul>
+
+        <table class="striped"style="font-size: 20px; background-color: white;">
+            <thead>
+                <tr>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>DDD</th>
+                        <th>Celular</th>
+                        <th>Email</th>
+                        <th>Endereco</th>
+                        <th>Numero</th>
+                        <th>Bairro</th>
+                        <th>Cidade</th>
+                        <th>Estado</th>
+                        <th>Editar</th>
+                        <th>Excluir</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% if (corretor.length > 0) {%>
+                    <% for(var i = 0; i < corretor.length; i++) {%>
+                        <tr>
+                            <td>
+                                <%=corretor[i].id_corretor%>
+                            </td>
+                            <td>
+                                <%=corretor[i].nome%>
+                            </td>
+                            <td>
+                                <span class="cpf"><%=corretor[i].cpf%></span>
+                            </td>
+                            <td>
+                                (<%=corretor[i].ddd%>)
+                            </td>
+                            <td>
+                                <span class="celular"><%=corretor[i].celular%></span>                               
+                            </td>
+                            <td>
+                                 <%=corretor[i].email%>
+                            </td>
+                            <td>
+                                <%=corretor[i].endereco%>
+                            </td>
+                            <td>
+                                 <%=corretor[i].numero%>
+                            </td>
+                            <td>
+                                  <%=corretor[i].bairro%>
+                             </td>
+                            <td>
+                                <%=corretor[i].cidade%>
+                            </td>
+                            <td>
+                                <%=corretor[i].estado%>
+                            </td>                         
+                            <td>
+                                <a class="btn-flat waves-effect waves-light edit" href="cadastraCorretor?id=<%=corretor[i].id_corretor%>" style="padding: 0px 1rem;">
+                                    <i class="material-icons">edit</i>
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn-flat waves-effect waves-light delete" href="excluiCorretor?id=<%=corretor[i].id_corretor%>" style="padding: 0px 1rem;">
+                                    <i class="material-icons">delete</i>
+                                </a>
+                            </td>
+                        </tr>
+                        <% } %>
+                    <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

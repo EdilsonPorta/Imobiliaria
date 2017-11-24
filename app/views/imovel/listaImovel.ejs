@@ -1,0 +1,104 @@
+<html>
+
+<head>
+    <link href="css/materialize.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="fonts/Source.ttf" rel="stylesheet">
+</head>
+
+<body>
+        <nav background-color: "#fdfdfd">
+                <div class="nav-wrapper">
+                    <a href="/" class="brand-logo left">
+                        <img id="imgLogo" src="img/menu.png">
+                                           
+                    </a>
+                    <div style="padding: 15px; margin-left: 70px;text-align: center;font-size: 100px;">
+                        <a  class="btn-flat" href="cadastraImovel">Novo Cadastro</a>
+                    </div>
+                 <div style="text-align: center;">
+                        <a class="options" href="listaImovel"><img class="logo" src="img/imovel.png">Imovel</a>
+                        <a class="options" href="listaCorretor"><img class="logo" src="img/corretor.png">Corretor</a>
+                
+            </nav>
+
+    <div class="container" style="margin-top: 100px;">
+
+            <ul class="collection">
+                    <li style="font-size: 35px;text-align: center;" class="collection-item">Lista de Imóveis</li>
+                
+                  </ul>
+
+        <table class="striped" style="font-size: 20px; background-color:white;">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Registro</th>
+                    <th>Lote</th>
+                    <th>Endereco</th>
+                    <th>Numero</th>
+                    <th>Bairro</th>
+                    <th>Cidade</th>
+                    <th>Estado</th>
+                    <th>Valor</th>
+                    <th>Corretor</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                <% if (imovel.length > 0) {%>
+                    <% for(var i = 0; i < imovel.length; i++) {%>
+                        <tr>
+                            <td>
+                                <%=imovel[i].id_imovel%>
+                            </td>
+                            <td>
+                                <%=imovel[i].registro%>
+                            </td>
+                            <td>
+                                <%=imovel[i].lote%>
+                            </td>
+                            <td>
+                                <%=imovel[i].endereco%>
+                            </td>
+                            <td>
+                                <%=imovel[i].numero%>
+                            </td>
+                            <td>
+                                <%=imovel[i].bairro%>
+                            </td>
+                            <td>
+                                <%=imovel[i].cidade%>
+                            </td>
+                            <td>
+                                <%=imovel[i].estado%>
+                            </td>
+                            <td>
+                                 <%=imovel[i].valor%>
+                            </td>
+                            <td>
+                                 <%=imovel[i].corretor%>
+                            </td>
+                            <td>
+                                <a class="edit" href="cadastraImovel?id=<%=imovel[i].id_imovel%>" style="padding: 0px 1rem;">
+                                    <i class="material-icons">edit</i>
+                                </a>
+                            </td>
+                            <td>
+                                <a class="delete" href="excluirImovel?id=<%=imovel[i].id_imovel%>" style="padding: 0px 1rem;">
+                                    <i class="material-icons">delete</i>
+                                </a>
+                            </td>
+                        </tr>
+                        <% } %>
+                            <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
